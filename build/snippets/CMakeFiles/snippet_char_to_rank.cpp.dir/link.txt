@@ -1,0 +1,1 @@
+/usr/lib/ccache/bin/c++  -Wall -Werror -pedantic CMakeFiles/snippet_char_to_rank.cpp.dir/char_to_rank.cpp.o -o snippet_char_to_rank.cpp 

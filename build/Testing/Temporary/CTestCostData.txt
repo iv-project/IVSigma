@@ -1,0 +1,4 @@
+snippet_char_to_rank 0 0
+test_snippet_char_to_rank 1 0.00315675
+test_snippet_char_to_rank.cpp 2 0.00158039
+---

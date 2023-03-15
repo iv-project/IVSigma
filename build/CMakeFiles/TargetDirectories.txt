@@ -1,0 +1,10 @@
+/home/gene/Coding/IVSigma/build/CMakeFiles/test.dir
+/home/gene/Coding/IVSigma/build/CMakeFiles/edit_cache.dir
+/home/gene/Coding/IVSigma/build/CMakeFiles/rebuild_cache.dir
+/home/gene/Coding/IVSigma/build/src/ivsigma/CMakeFiles/test.dir
+/home/gene/Coding/IVSigma/build/src/ivsigma/CMakeFiles/edit_cache.dir
+/home/gene/Coding/IVSigma/build/src/ivsigma/CMakeFiles/rebuild_cache.dir
+/home/gene/Coding/IVSigma/build/snippets/CMakeFiles/snippet_char_to_rank.cpp.dir
+/home/gene/Coding/IVSigma/build/snippets/CMakeFiles/test.dir
+/home/gene/Coding/IVSigma/build/snippets/CMakeFiles/edit_cache.dir
+/home/gene/Coding/IVSigma/build/snippets/CMakeFiles/rebuild_cache.dir
