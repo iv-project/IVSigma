@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Utility functions - IVSigma</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="css/foundation.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Utility functions";
+        var mkdocs_page_input_path = "functions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="js/highlight-10.5.0.min.js"></script>
+      <script src="js/hljs-cmake-10.5.0.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="index.html" class="icon icon-home"> IVSigma
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">Home</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="index.html#basic-concepts">Basic concepts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="index.html#integration-cmake">Integration CMake</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="index.html#integration-fmt">Integration fmt</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">C++ API-Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="alphabets.html">Alphabets</a>
+    <ul>
+    <li class="toctree-l2"><a class="reference internal" href="alphabets.html#nucleotide-based">Nucleotide based</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="alphabets.html#amino-acid-based">Amino acid based</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="alphabets.html#quality-based">Quality based</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="functions.html">Utility functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#convert-chars-to-ranks">Convert chars to ranks</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#output">Output</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#convert-ranks-to-chars">Convert ranks to chars</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#normalize-chars">Normalize chars</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#complement">Complement</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reverse-complement">Reverse complement</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IVSigma</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html" class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>C++ API-Reference &raquo;</li>
+      <li>Utility functions</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/SGSSGene/IVSigma/edit/master/docs/functions.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="utility-functions">Utility functions</h1>
+<h2 id="convert-chars-to-ranks">Convert chars to ranks</h2>
+<ol>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">convert_char_to_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">convert_char_to_rank</span><span class="o">&lt;</span><span class="n">Alpabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_char_to_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+</ol>
+<p>Conversion from <strong>char space</strong> to <strong>rank space</strong>.
+All versions are guaranteed to not throw.</p>
+<h3 id="example">Example</h3>
+<pre><code class="language-cpp">#include &lt;ivsigma/ivsigma.h&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    auto input = std::string{&quot;ACCACGT&quot;};
+    { // Style 1
+        auto output = std::vector&lt;uint8_t&gt;{};
+        output.resize(input.size());
+        ivs::convert_char_to_rank&lt;ivs::dna4&gt;(input, output);
+        for (auto r : output) {
+            std::cout &lt;&lt; (int)r;
+        }
+        std::cout &lt;&lt; '\n';
+    }
+    { // Style 2
+        std::vector&lt;uint8_t&gt; output = ivs::convert_char_to_rank&lt;ivs::dna4&gt;(input);
+        for (auto r : output) {
+            std::cout &lt;&lt; (int)r;
+        }
+        std::cout &lt;&lt; '\n';
+    }
+    { // Style 3
+        auto output_view = input | ivs::view_char_to_rank&lt;ivs::dna4&gt;;
+        auto output = std::vector&lt;uint8_t&gt;(output_view.begin(), output_view.end());
+        for (auto r : output) {
+            std::cout &lt;&lt; (int)r;
+        }
+        std::cout &lt;&lt; '\n';
+    }
+}
+</code></pre>
+<h3 id="output">Output</h3>
+<pre><code class="language-bash">0110123
+0110123
+0110123
+</code></pre>
+<h2 id="convert-ranks-to-chars">Convert ranks to chars</h2>
+<ol>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">char_to_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">char_to_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_char_to_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+</ol>
+<h2 id="normalize-chars">Normalize chars</h2>
+<ol>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">normalize_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">normalize_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_normalize_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+</ol>
+<h2 id="complement">Complement</h2>
+<ol>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">complement_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">complement_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_complement_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">complement_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">complement_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_complement_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+</ol>
+<h2 id="reverse-complement">Reverse complement</h2>
+<ol>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">reverse_complement_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">reverse_complement_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_reverse_complement_rank</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+<li><code class="language-cpp highlight"><span class="kt">void</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">reverse_complement_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">out</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">reverse_complement_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span></code></li>
+<li><code class="language-cpp highlight"><span class="k">auto</span><span class="w"> </span><span class="n">ivs</span><span class="o">::</span><span class="n">view_reverse_complement_char</span><span class="o">&lt;</span><span class="n">Alphabet</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/*unspecificed*/</span></code></li>
+</ol>
+<h2 id="verification">Verification</h2>
+<ol>
+<li><code class="language-cpp highlight"><span class="kt">bool</span><span class="w"> </span><span class="n">verify_char</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span></code></li>
+<li><code class="language-cpp highlight"><span class="kt">bool</span><span class="w"> </span><span class="n">verify_rank</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="o">&gt;</span><span class="w"> </span><span class="n">in</span><span class="p">)</span></code></li>
+</ol>
+              
+            </div>
+          </div><footer>
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/SGSSGene/IVSigma" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="alphabets.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="extra-highlights.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
