@@ -9,11 +9,11 @@ All versions are guaranteed to not throw.
 
 ### Example
 ```cpp
-{!snippets/char_to_rank.cpp!}
+{%include-markdown "snippets/char_to_rank.cpp"%}
 ```
 ### Output
 ```bash
-{!snippets/char_to_rank.cpp.out!}
+{% include-markdown "snippets/char_to_rank.cpp.out" %}
 ```
 
 ## Convert ranks to chars

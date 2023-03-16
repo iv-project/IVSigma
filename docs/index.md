@@ -1,4 +1,4 @@
-# Home
+# Introduction
 
 A c++20 library for **bioinformatics**. It provides functionality to work
 on **nucleotide** alphabets (e.g. `dna4`, `dna5`, `rna4`, ...), **amino acid**
@@ -30,26 +30,26 @@ add_subdirectory(lib/IVSigma)
 target_link_library(your_project ivsigma::ivsigma)
 ```
 
-You can now happily use IVSigma
-```
-#include <ivsigma/ivsigma.h>
+You can now happily use **IVSigma**
 
-int main() {
-    auto ranks = ivs::convert_char_to_rank<ivs::dna4>("acgt");
-    // ranks == {0, 1, 2, 3}
-}
+**Code**
+```c++
+{% include-markdown "snippets/simple_example.cpp" %}
+```
+**Output**
+```sh
+{% include-markdown "snippets/simple_example.cpp.out" %}
 ```
 
 ## Integration fmt
 This library also works easily with [{fmt}](https://github.com/fmtlib/fmt) together.
-```
-#include <fmt/format.h>
-#include <fmt/ranges.h>
-#include <ivsigma/ivsigma.h>
 
-int main() {
-    auto input  = std::string{"ACGnACGt"};
-    auto output = ivs::convert_char_to_rank<ivs::dna5>(input);
-    fmt::print("{} => {}\n", input, output);
-}
+**Code**
+```c++
+{% include-markdown "snippets/fasta_reader_example.cpp" %}
+```
+
+**Output**
+```sh
+{% include-markdown "snippets/fasta_reader_example.cpp.out" %}
 ```
