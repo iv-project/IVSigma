@@ -1,10 +1,16 @@
+// -----------------------------------------------------------------------------------------------------
+// Copyright (c) 2006-2023, Knut Reinert & Freie Universität Berlin
+// Copyright (c) 2016-2023, Knut Reinert & MPI für molekulare Genetik
+// This file may be used, modified and/or redistributed under the terms of the 3-clause BSD-License
+// shipped with this file.
+// -----------------------------------------------------------------------------------------------------
 #pragma once
 
 #include "simple_alphabet.h"
 
 namespace ivs {
 
-//                                              rank, symbol, compl, alts...
+//                                                             rank, symbol, compl, alts...
 struct dna4 : alphabet_with_compl<rank_char_mapping_with_compl<   0,    'A',   'T', 'a'>,
                                   rank_char_mapping_with_compl<   1,    'C',   'G', 'c'>,
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
