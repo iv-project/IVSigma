@@ -32,5 +32,8 @@ if (${ROOT_PROJECT})
 #    add_subdirectory(lib/Catch2)
     enable_testing()
 
+
+    enable_testing()
     add_subdirectory(docs/snippets)
+    add_subdirectory(src/test_ivsigma)
 endif()
