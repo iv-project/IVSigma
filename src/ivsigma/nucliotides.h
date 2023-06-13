@@ -7,6 +7,7 @@
 #pragma once
 
 #include "simple_alphabet.h"
+#include "delimited_alphabet.h"
 
 namespace ivs {
 
@@ -67,70 +68,23 @@ struct dna3bs : simple_alphabet<rank_char_mapping<   0,    'A',   'a'>,
 {};
 static_assert(alphabet_c<dna3bs>, "Unit test: is supposed to model an alphabet");
 
-// similar alphabets but with an addittional zero delimiter
 
-  //                                                             rank, symbol, compl, alts...
-struct d_dna4 : alphabet_with_compl<rank_char_mapping_with_compl<   0,    '$',   '$'>,
-                                    rank_char_mapping_with_compl<   1,    'A',   'T', 'a'>,
-                                    rank_char_mapping_with_compl<   2,    'C',   'G', 'c'>,
-                                    rank_char_mapping_with_compl<   3,    'G',   'C', 'g'>,
-                                    rank_char_mapping_with_compl<   4,    'T',   'A', 't'>>
-{};
+struct d_dna4 : delimited_alphabet<dna4> {};
 static_assert(alphabet_c<d_dna4>, "Unit test: is supposed to model an alphabet");
 
-struct d_dna5 : alphabet_with_compl<rank_char_mapping_with_compl<   0,    '$',   '$'>,
-                                    rank_char_mapping_with_compl<   1,    'A',   'T', 'a'>,
-                                    rank_char_mapping_with_compl<   2,    'C',   'G', 'c'>,
-                                    rank_char_mapping_with_compl<   3,    'G',   'C', 'g'>,
-                                    rank_char_mapping_with_compl<   4,    'T',   'A', 't'>,
-                                    rank_char_mapping_with_compl<   5,    'N',   'N', 'n'>>
-{};
+struct d_dna5 : delimited_alphabet<dna5> {};
 static_assert(alphabet_c<d_dna5>, "Unit test: is supposed to model an alphabet");
 
-struct d_iupac : alphabet_with_compl<rank_char_mapping_with_compl<   0,   '$',   '$'>,
-                                     rank_char_mapping_with_compl<   1,   'A',   'T', 'a'>,
-                                     rank_char_mapping_with_compl<   2,   'C',   'G', 'c'>,
-                                     rank_char_mapping_with_compl<   3,   'G',   'C', 'g'>,
-                                     rank_char_mapping_with_compl<   4,   'T',   'A', 't', 'U', 'u'>,
-                                     rank_char_mapping_with_compl<   5,   'N',   'N', 'n'>,
-                                     rank_char_mapping_with_compl<   6,   'R',   'Y', 'r'>,
-                                     rank_char_mapping_with_compl<   7,   'Y',   'R', 'y'>,
-                                     rank_char_mapping_with_compl<   8,   'S',   'S', 's'>,
-                                     rank_char_mapping_with_compl<   9,   'W',   'W', 'w'>,
-                                     rank_char_mapping_with_compl<  10,   'K',   'M', 'k'>,
-                                     rank_char_mapping_with_compl<  11,   'M',   'K', 'm'>,
-                                     rank_char_mapping_with_compl<  12,   'B',   'V', 'b'>,
-                                     rank_char_mapping_with_compl<  13,   'D',   'H', 'd'>,
-                                     rank_char_mapping_with_compl<  14,   'H',   'D', 'h'>,
-                                     rank_char_mapping_with_compl<  15,   'V',   'B', 'v'>,
-                                     rank_char_mapping_with_compl<  16,   '-',   '-', '.'>>
-{};
+struct d_iupac : delimited_alphabet<iupac> {};
 static_assert(alphabet_c<d_iupac>, "Unit test: is supposed to model an alphabet");
 
-struct d_rna4 : alphabet_with_compl<rank_char_mapping_with_compl<   0,    '$',   '$'>,
-                                    rank_char_mapping_with_compl<   1,    'A',   'U', 'a'>,
-                                    rank_char_mapping_with_compl<   2,    'C',   'G', 'c'>,
-                                    rank_char_mapping_with_compl<   3,    'G',   'C', 'g'>,
-                                    rank_char_mapping_with_compl<   4,    'U',   'A', 'u'>>
-{};
-static_assert(alphabet_c<d_rna4>, "Unit test: is supposed to model an alphabet");
+struct d_rna4 : delimited_alphabet<rna4> {};
+static_assert(alphabet_c<d_dna4>, "Unit test: is supposed to model an alphabet");
 
-struct d_rna5 : alphabet_with_compl<rank_char_mapping_with_compl<   0,    '$',   '$'>,
-                                    rank_char_mapping_with_compl<   1,    'A',   'U', 'a'>,
-                                    rank_char_mapping_with_compl<   2,    'C',   'G', 'c'>,
-                                    rank_char_mapping_with_compl<   3,    'G',   'C', 'g'>,
-                                    rank_char_mapping_with_compl<   4,    'U',   'A', 'u'>,
-                                    rank_char_mapping_with_compl<   5,    'N',   'N', 'n'>>
-{};
+struct d_rna5 : delimited_alphabet<rna5> {};
 static_assert(alphabet_c<d_rna5>, "Unit test: is supposed to model an alphabet");
 
-//                                                rank, symbol,   alts...
-struct d_dna3bs : simple_alphabet<rank_char_mapping<   0,    '$'>,
-                                  rank_char_mapping<   1,    'A',   'a'>,
-                                  rank_char_mapping<   2,    'G',   'g'>,
-                                  rank_char_mapping<   3,    'T',   't', 'C', 'c'>>
-{};
+struct d_dna3bs : delimited_alphabet<dna3bs> {};
 static_assert(alphabet_c<d_dna3bs>, "Unit test: is supposed to model an alphabet");
-
 
 }
