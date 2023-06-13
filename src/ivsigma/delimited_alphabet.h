@@ -91,7 +91,7 @@ private:
     static constexpr std::array<uint8_t, 256> rank_complement_table{[]() {
         auto table = std::array<uint8_t, 256>{};
         table.fill(255);
-        for (size_t i{0}; i < 256; ++i) {
+        for (size_t i{0}; i < 255; ++i) {
             table[i+1] = Alphabet::complement_rank(i)+1;
         }
         table[0] = 0;
