@@ -89,7 +89,7 @@ public:
      * \param c char value
      * \return corresponding normalized char value
      */
-    static constexpr auto normalize_char(char c) noexcept -> uint8_t {
+    static constexpr auto normalize_char(char c) noexcept -> char {
         auto index = static_cast<uint8_t>(c);
         return normalize_char_table[index];
     }
@@ -161,7 +161,7 @@ public:
      * \param c char value
      * \return corresponding normalized char value
      */
-    static constexpr auto normalize_char(char c) noexcept -> uint8_t {
+    static constexpr auto normalize_char(char c) noexcept -> char {
         auto index = static_cast<uint8_t>(c);
         return normalize_char_table[index];
     }
