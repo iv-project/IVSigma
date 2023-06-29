@@ -349,12 +349,14 @@ int main() {
             input[3] = 'A';
         }
         auto output = ivs::convert_char_to_rank<ivs::dna5>(input);
-        fmt::print("{} => {}\n", input, output);
+        auto s = fmt::format("{} => {}", input, output);
+        assert(s == "ACGnACGt => [0, 1, 2, 4, 0, 1, 2, 3]");
     }
     // using view to convert string to ranks
-/*    {
+    {
         auto input  = std::string{"ACGTACGT"};
-        auto output = input | ivs::view_char_as_rank<ivs::dna4>;
-        fmt::print("{} => {}\n", input, output);
-    }*/
+        auto output = input | ivs::view_char_to_rank<ivs::dna4>;
+        auto s = fmt::format("{} => {}", input, output);
+        assert(s == "ACGTACGT => [0, 1, 2, 3, 0, 1, 2, 3]");
+    }
 }
