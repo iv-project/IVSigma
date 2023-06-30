@@ -429,10 +429,10 @@ int main() {
     test_compact_encoding();
     test_winnowing_minimizer();
     using namespace std::literals;
-    assert(ivs::verify_char("ACGT"s) == true);
-    assert(ivs::verify_char("ACG\0T"s) == false);
-    assert(ivs::verify_rank(std::vector<uint8_t>{0, 1, 2, 3, 128, 254}) == true);
-    assert(ivs::verify_rank(std::vector<uint8_t>{0, 1, 2, 3, 255, 128, 254}) == false);
+    assert(!ivs::verify_char("ACGT"s));
+    assert(ivs::verify_char("ACG\0T"s).value() == 3);
+    assert(!ivs::verify_rank(std::vector<uint8_t>{0, 1, 2, 3, 128, 254}));
+    assert(ivs::verify_rank(std::vector<uint8_t>{0, 1, 2, 3, 255, 128, 254}).value() == 4);
 
     // using convert function to convert string to ranks
     {

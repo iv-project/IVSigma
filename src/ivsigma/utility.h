@@ -298,10 +298,11 @@ auto view_reverse_complement_char = std::views::reverse | std::views::transform(
  * \param in char input
  * \return std::optional pointing to the wrong entry (if one exists)
  */
-inline bool verify_char(std::span<char const> in) {
+inline auto verify_char(std::span<char const> in) -> std::optional<size_t> {
     auto str = std::string_view{in.begin(), in.end()};
     auto pos = str.find('\0');
-    return std::string_view::npos == pos;
+    if (std::string_view::npos == pos) return std::nullopt; // verification successful
+    return pos;
 }
 
 /*! \brief Returns if all ranks are valid (searches for 255)
@@ -309,9 +310,11 @@ inline bool verify_char(std::span<char const> in) {
  * \param in rank input
  * \return std::optional pointing to the wrong entry (if one exists)
  */
-inline bool verify_rank(std::span<uint8_t const> in) {
+inline auto verify_rank(std::span<uint8_t const> in) -> std::optional<size_t> {
     auto str = std::basic_string_view<uint8_t>{in.begin(), in.end()};
-    return std::string_view::npos == str.find(255);
+    auto pos = str.find(255);
+    if (std::string_view::npos == pos) return std::nullopt; // verification successful
+    return pos;
 }
 
 }
