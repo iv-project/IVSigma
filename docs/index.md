@@ -24,7 +24,7 @@ Easiest way to use this repository is to clone this as a subrepo into your proje
 `lib/IVSigma`, and then edit your `CMakeLists.txt`:
 
 ```cmake
-add_subdirectory(lib/IVSigma)
+find_package(ivsigma REQUIRED PATHS lib/ivsigma)
 
 # ...
 target_link_library(your_project ivsigma::ivsigma)
