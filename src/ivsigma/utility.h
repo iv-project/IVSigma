@@ -141,7 +141,7 @@ auto view_normalize_char = std::views::transform([](char c) {
  * \param in rank input
  * \param out complement of input (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 void complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
@@ -155,7 +155,7 @@ void complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out) {
  * \param in rank input
  * \return complement in rank space
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t> {
     auto out = std::vector<uint8_t>{};
     out.resize(in.size());
@@ -167,7 +167,7 @@ auto complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t> {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto view_complement_rank = std::views::transform([](uint8_t c) {
     return Alphabet::complement_rank(c);
 });
@@ -181,7 +181,7 @@ auto view_complement_rank = std::views::transform([](uint8_t c) {
  * \param in string input
  * \param out complement of input (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 void complement_char(std::span<char const> in, std::span<char> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
@@ -195,7 +195,7 @@ void complement_char(std::span<char const> in, std::span<char> out) {
  * \param in string input
  * \return complement string of input
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto complement_char(std::span<char const> in) -> std::string {
     auto out = std::string{};
     out.resize(in.size());
@@ -207,7 +207,7 @@ auto complement_char(std::span<char const> in) -> std::string {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto view_complement_char = std::views::transform([](char c) {
     return Alphabet::complement_char(c);
 });
@@ -220,7 +220,7 @@ auto view_complement_char = std::views::transform([](char c) {
  * \param in string input
  * \param out reverse complement of input (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 void reverse_complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
@@ -234,7 +234,7 @@ void reverse_complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out
  * \param in a span of ranks
  * \return reverse complement of in
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto reverse_complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t> {
     auto out = std::vector<uint8_t>{};
     out.resize(in.size());
@@ -246,7 +246,7 @@ auto reverse_complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto view_reverse_complement_rank = std::views::reverse | std::views::transform([](uint8_t c) {
     return Alphabet::complement_rank(c);
 });
@@ -260,7 +260,7 @@ auto view_reverse_complement_rank = std::views::reverse | std::views::transform(
  * \param in string input
  * \param out complement of input (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 void reverse_complement_char(std::span<char const> in, std::span<char> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
@@ -274,7 +274,7 @@ void reverse_complement_char(std::span<char const> in, std::span<char> out) {
  * \param in string input
  * \return reverse complement string of input
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto reverse_complement_char(std::span<char const> in) -> std::string {
     auto out = std::string{};
     out.resize(in.size());
@@ -286,7 +286,7 @@ auto reverse_complement_char(std::span<char const> in) -> std::string {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_with_complement_c Alphabet>
 auto view_reverse_complement_char = std::views::reverse | std::views::transform([](char c) {
     return Alphabet::complement_char(c);
 });
