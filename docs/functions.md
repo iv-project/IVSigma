@@ -57,7 +57,6 @@ Characters invalid to `Alphabet` will be converted to `255` and can be checked v
 {% include-markdown "snippets/normalize_char.cpp.out" %}
 ```
 
-
 ---
 ## Complement
 1. `#!cpp void ivs::complement_rank<Alphabet>(std::span<uint8_t const> in, std::span<uint8_t> out)`
@@ -66,6 +65,20 @@ Characters invalid to `Alphabet` will be converted to `255` and can be checked v
 4. `#!cpp void ivs::complement_char<Alphabet>(std::span<char const> in, std::span<char> out)`
 5. `#!cpp auto ivs::complement_char<Alphabet>(std::span<char const> in) -> std::string`
 6. `#!cpp auto ivs::view_complement_char<Alphabet> = /*unspecified*/`
+
+Computes the complement according to `Alphabet`. It is required that `Alphabet` has the concept `alphabet_with_complement_c`.
+Version 1, 3, 4 and 6 never throw. Version 2 and 5 might throw inside of `std::vector` or `std::string`.
+Invalid ranks in `*_rank` functions will be converted to `0`.
+in the `*_char` version, invalid letters will be converted to `\0`.
+
+### Example
+```cpp
+{% include-markdown "snippets/complement.cpp" %}
+```
+**Output:**
+```bash
+{% include-markdown "snippets/complement.cpp.out" %}
+```
 
 ---
 ## Reverse complement
