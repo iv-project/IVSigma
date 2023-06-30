@@ -15,46 +15,6 @@
 
 namespace ivs {
 
-/********** Functions Normalizing chars **********/
-
-/*! \brief Normalizes chars according to the alphabet
- *
- * \tparam Alphabet describes the used alphabet
- * \param in string input
- * \param out normalized string of input (must have same size as in)
- */
-template <alphabet_c Alphabet>
-void normalize_char(std::span<char const> in, std::span<char> out) {
-    assert(in.size() == out.size());
-    for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::normalize_char(in[i]);
-    }
-}
-
-/*! \brief Normalizes chars according to the alphabet
- *
- * \tparam Alphabet describes the used alphabet
- * \param in string input
- * \return normalized string of input
- */
-template <alphabet_c Alphabet>
-auto normalize_char(std::span<char const> in) -> std::string {
-    auto out = std::string{};
-    out.resize(in.size());
-    normalize_char<Alphabet>(in, out);
-    return out;
-}
-
-/*! \brief A view representing a normalized string
- *
- * \tparam Alphabet describes the used alphabet
- */
-template <alphabet_c Alphabet>
-auto view_normalize_char = std::views::transform([](char c) {
-    return Alphabet::normalize_char(c);
-});
-
-
 /********** Functions converting chars to rank **********/
 
 /*! \brief Converts a string to a rank representation
@@ -134,6 +94,44 @@ auto view_rank_to_char = std::views::transform([](uint8_t c) {
     return Alphabet::rank_to_char(c);
 });
 
+/********** Functions Normalizing chars **********/
+
+/*! \brief Normalizes chars according to the alphabet
+ *
+ * \tparam Alphabet describes the used alphabet
+ * \param in string input
+ * \param out normalized string of input (must have same size as in)
+ */
+template <alphabet_c Alphabet>
+void normalize_char(std::span<char const> in, std::span<char> out) {
+    assert(in.size() == out.size());
+    for (auto i{0}; i < ssize(in); ++i) {
+        out[i] = Alphabet::normalize_char(in[i]);
+    }
+}
+
+/*! \brief Normalizes chars according to the alphabet
+ *
+ * \tparam Alphabet describes the used alphabet
+ * \param in string input
+ * \return normalized string of input
+ */
+template <alphabet_c Alphabet>
+auto normalize_char(std::span<char const> in) -> std::string {
+    auto out = std::string{};
+    out.resize(in.size());
+    normalize_char<Alphabet>(in, out);
+    return out;
+}
+
+/*! \brief A view representing a normalized string
+ *
+ * \tparam Alphabet describes the used alphabet
+ */
+template <alphabet_c Alphabet>
+auto view_normalize_char = std::views::transform([](char c) {
+    return Alphabet::normalize_char(c);
+});
 
 /********** Functions complement in rank space **********/
 

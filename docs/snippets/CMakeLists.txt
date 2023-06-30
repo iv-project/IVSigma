@@ -9,4 +9,6 @@ function(test_snippet file_base_name)
 endfunction()
 
 test_snippet("char_to_rank.cpp")
+test_snippet("rank_to_char.cpp")
+test_snippet("normalize_char.cpp")
 test_snippet("fasta_reader_example.cpp")
