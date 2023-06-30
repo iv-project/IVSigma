@@ -5,6 +5,7 @@ nav:
   - C++ API-Reference:
     - alphabets.md
     - functions.md
+    - kmers.md
 use_directory_urls: false
 theme:
   name: readthedocs
