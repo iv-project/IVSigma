@@ -2,7 +2,7 @@
 
 A c++20 library for **bioinformatics**. It provides functionality to work
 on **nucleotide** alphabets (e.g. `dna4`, `dna5`, `rna4`, ...), **amino acid**
-based alphabets and many more.
+based alphabets and many more. The development is happening on [github](https://github.com/SGSSGene/IVSigma).
 
 ## Basic concepts
 
