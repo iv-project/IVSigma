@@ -92,7 +92,7 @@ in the `*_char` version, invalid letters will be converted to `\0`.
 Computes the reverse complement according to `Alphabet`. It is required that `Alphabet` has the concept `alphabet_with_complement_c`.
 Version 1, 3, 4 and 6 never throw. Version 2 and 5 might throw inside of `std::vector` or `std::string`.
 Invalid ranks in `*_rank` functions will be converted to `0`.
-in the `*_char` version, invalid letters will be converted to `\0`.
+In the `*_char` version, invalid letters will be converted to `\0`.
 
 ### Example
 ```cpp
@@ -105,8 +105,11 @@ in the `*_char` version, invalid letters will be converted to `\0`.
 
 ---
 ## Verification
-1. `#!cpp bool verify_char(std::span<char const> in)`
-2. `#!cpp bool verify_rank(std::span<uint8_t const> in)`
+1. `#!cpp std::optional<size_t> verify_char(std::span<char const> in)`
+2. `#!cpp std::optional<size_t> verify_rank(std::span<uint8_t const> in)`
+
+Verifies if characters and ranks are valid. Invalid ranks are `255` and invalid characters `\0`. If an invalid
+char/rank is found, this function reports its position. These function never throw.
 
 ### Example
 ```cpp
@@ -116,6 +119,5 @@ in the `*_char` version, invalid letters will be converted to `\0`.
 ```bash
 {% include-markdown "snippets/reverse_complement.cpp.out" %}
 ```
-
 
 ---
