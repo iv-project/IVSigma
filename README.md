@@ -5,7 +5,7 @@ A c++20 library for bioinformatics. It provides functionality to work on nucleot
 alphabets as used in **bioinformatics**, such as Σ={A, C, G, T, N}
 
 ## Documentation/API Reference
-Checkout the [documentation](https://sgssgene.github.io/IVSigma/) for more information.
+Checkout the [documentation](https://iv-project.github.io/IVSigma/) for more information.
 
 ## Example
 
