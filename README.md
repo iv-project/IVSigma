@@ -11,7 +11,7 @@ Checkout the [documentation](https://sgssgene.github.io/IVSigma/) for more infor
 
 Here a quick example on how to convert dna5 data into rank space:
 
-```
+```c++
 int main() {
     auto input  = std::string{"ACGnACGt"};
     auto output = ivs::convert_char_to_rank<ivs::dna5>(input);
