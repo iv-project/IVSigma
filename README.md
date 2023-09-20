@@ -7,6 +7,16 @@ alphabets as used in **bioinformatics**, such as Σ={A, C, G, T, N}
 ## Documentation/API Reference
 Checkout the [documentation](https://iv-project.github.io/IVSigma/) for more information.
 
+## Usage CMake
+To use this package with cmake you must add this repository via `find_package` and add a `target_link_libraries`.
+e.g:
+```cmake
+find_package(ivsigma PATHS lib/IVSigma)
+add_executable(your_exec file1.cpp)
+target_link_libraries(your_exec PUBLIC ivsigma::ivsigma)
+```
+
+
 ## Example
 
 Here a quick example on how to convert dna5 data into rank space:
