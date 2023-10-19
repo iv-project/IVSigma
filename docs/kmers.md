@@ -1,3 +1,8 @@
+<!--
+    SPDX-FileCopyrightText: 2006-2023, Knut Reinert & Freie Universität Berlin
+    SPDX-FileCopyrightText: 2016-2023, Knut Reinert & MPI für molekulare Genetik
+    SPDX-License-Identifier: CC-BY-4.0
+-->
 # K-mers/Minimizers
 K-mers (also known as q-grams) are substrings of length `k`.
 These allow for a convenient handling of long string, by splitting it into overlapping

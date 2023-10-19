@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2006-2023, Knut Reinert & Freie Universität Berlin
+# SPDX-FileCopyrightText: 2016-2023, Knut Reinert & MPI für molekulare Genetik
+# SPDX-License-Identifier: CC0-1.0
 name: "Linux"
 
 on:
@@ -19,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         osname: ["Ubuntu 22.04"]
-        compiler: ["gcc13 (c++20)", "gcc12 (c++20)", "gcc11 (c++20)", "gcc13 (c++20, Debug)", "clang16"]
+        compiler: ["gcc13 (c++20)", "gcc12 (c++20)", "gcc11 (c++20)", "gcc13 (c++20, Debug)", "clang16", "clang17"]
         include:
           - osname: "Ubuntu 22.04"
             os: ubuntu-22.04
@@ -51,10 +54,16 @@ jobs:
             brew_pkgs: gcc@13
 
           - compiler: "clang16"
+            cxx: "/home/linuxbrew/.linuxbrew/opt/llvm@16/bin/clang++"
+            cc: "/home/linuxbrew/.linuxbrew/opt/llvm@16/bin/clang"
+            build_type: Release
+            brew_pkgs: llvm@16
+
+          - compiler: "clang17"
             cxx: "clang++"
             cc: "clang"
             build_type: Release
-            brew_pkgs: llvm@16
+            brew_pkgs: llvm@17
     steps:
       - name: Standard IV-project testing
         uses: iv-project/IVaction/linux-testing@v1
