@@ -16,6 +16,7 @@ theme:
   locale: en
   features:
     - navigation.sections
+    - content.code.copy
 plugins:
   - include-markdown:
       comments: false
