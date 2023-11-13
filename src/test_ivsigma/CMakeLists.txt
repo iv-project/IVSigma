@@ -8,12 +8,10 @@ project(test_ivsigma)
 add_executable(${PROJECT_NAME}
     main.cpp
 )
+
 target_link_libraries(${PROJECT_NAME}
     ivsigma::ivsigma
-    fmt
-)
-target_compile_options(${PROJECT_NAME} PUBLIC
-    -U NDEBUG
+    fmt::fmt
 )
 
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})

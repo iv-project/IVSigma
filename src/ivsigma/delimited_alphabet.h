@@ -44,7 +44,7 @@ struct delimited_alphabet<Alphabet, true, false> {
     static constexpr std::array<char, 256> normalize_char_table{[]() {
         auto table = std::array<char, 256>{};
         for (size_t i{0}; i < 256; ++i) {
-            table = Alphabet::normalize_char(i);
+            table[i] = Alphabet::normalize_char(i);
         }
         return table;
     }()};

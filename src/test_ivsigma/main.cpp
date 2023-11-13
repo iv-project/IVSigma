@@ -1,10 +1,14 @@
 // SPDX-FileCopyrightText: 2006-2023, Knut Reinert & Freie Universität Berlin
 // SPDX-FileCopyrightText: 2016-2023, Knut Reinert & MPI für molekulare Genetik
 // SPDX-License-Identifier: CC0-1.0
+#undef NDEBUG
+
+#include <algorithm>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 #include <iostream>
 #include <ivsigma/ivsigma.h>
+#include <ranges>
 #include <string>
 
 template <ivs::alphabet_c Alphabet>
