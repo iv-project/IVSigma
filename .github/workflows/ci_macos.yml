@@ -22,6 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         compiler:
+          - clang16-cpp20-release
           - clang17-cpp20-release
     steps:
       - name: Standard IV-project testing
