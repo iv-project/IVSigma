@@ -6,8 +6,10 @@
 #include "concepts.h"
 
 #include <cassert>
+#include <optional>
 #include <ranges>
 #include <span>
+#include <string>
 #include <vector>
 
 namespace ivs {

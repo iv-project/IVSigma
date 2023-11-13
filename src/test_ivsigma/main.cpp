@@ -3,10 +3,12 @@
 // SPDX-License-Identifier: CC0-1.0
 #undef NDEBUG
 
+#include <algorithm>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 #include <iostream>
 #include <ivsigma/ivsigma.h>
+#include <ranges>
 #include <string>
 
 template <ivs::alphabet_c Alphabet>
