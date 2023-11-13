@@ -10,7 +10,7 @@ add_executable(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
     ivsigma::ivsigma
-    fmt
+    fmt::fmt
 )
 target_compile_options(${PROJECT_NAME} PUBLIC
     -U NDEBUG
