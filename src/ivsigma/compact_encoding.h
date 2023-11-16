@@ -5,6 +5,7 @@
 
 #include "concepts.h"
 
+#include <cassert>
 #include <cstdint>
 #include <cmath>
 #include <span>
