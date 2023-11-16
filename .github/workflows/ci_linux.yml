@@ -17,7 +17,7 @@ jobs:
   build:
     name: ${{ matrix.compiler }}
     runs-on: ubuntu-22.04
-    timeout-minutes: 30
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -25,13 +25,14 @@ jobs:
           - gcc13-cpp20-release
           - gcc12-cpp20-release
           - gcc11-cpp20-release
-          - gcc13-cpp20-debug
+          - gcc13-cpp20-debug-sanitize_address
+          - gcc13-cpp20-debug-sanitize_undefined
           - gcc13-cpp20-lcov
           - clang16-cpp20-release
           - clang17-cpp20-release
     steps:
       - name: Standard IV-project testing
-        uses: iv-project/IVaction/linux-testing@v6
+        uses: iv-project/IVaction/linux-testing@v6.2
         with:
           compiler: ${{ matrix.compiler }}
           threads: 2

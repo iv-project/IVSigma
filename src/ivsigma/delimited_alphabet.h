@@ -5,6 +5,7 @@
 
 #include "concepts.h"
 
+#include <array>
 #include <cstddef>
 
 namespace ivs {
