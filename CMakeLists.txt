@@ -25,14 +25,12 @@ endif ()
 project(ivsigma LANGUAGES CXX VERSION "${IVIO_PROJECT_VERSION}"
             DESCRIPTION "ivsigma -- utilities function for dna4, dna5, aa and many more ... alphabets")
 
+include(cmake/CPM.cmake)
 include(ivsigma-config.cmake)
 
 if (${ROOT_PROJECT})
-    find_package (fmt REQUIRED)
-
-#    add_subdirectory(lib/Catch2)
-    enable_testing()
-
+    CPMaddPackage("gh:fmtlib/fmt#10.1.1")
+#    CPMaddPackage("gh:catchorg/Catch2#v3.4.0")
 
     enable_testing()
     add_subdirectory(docs/snippets)
