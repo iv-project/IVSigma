@@ -10,11 +10,5 @@ add_library(ivsigma::ivsigma ALIAS ivsigma)
 
 target_include_directories(${PROJECT_NAME}
     INTERFACE
-    ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/..
 )
-
-target_link_libraries(${PROJECT_NAME}
-    INTERFACE
-)
-
