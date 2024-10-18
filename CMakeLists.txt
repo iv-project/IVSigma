@@ -10,9 +10,10 @@ project(ivsigma LANGUAGES CXX VERSION "${IVIO_PROJECT_VERSION}"
 if (PROJECT_IS_TOP_LEVEL)
     if(WIN32)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj /EHsc")
-    else()
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_CXX_COMPILER_VERSION VERSION_LESS_EQUAL 12.9)
+    else ()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -pedantic")
-    endif()
+    endif ()
 endif ()
 
 
