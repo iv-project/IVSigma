@@ -1,0 +1,12 @@
+{
+  "format_version": "1",
+  "packages": [
+    {
+      "if": "PROJECT_IS_TOP_LEVEL",
+      "name": "fmt",
+      "version": "11.0.2",
+      "github_repository": "fmtlib/fmt",
+      "git_tag": "{VERSION}"
+    }
+  ]
+}
