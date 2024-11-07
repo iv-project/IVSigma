@@ -24,6 +24,7 @@ jobs:
       matrix:
         include:
           - {os: ubuntu-22.04, compiler: cpm_update_version}
+          - {os: ubuntu-22.04, compiler: check_tag-open_issue}
     steps:
       - name: Standard IV-project testing
         uses: iv-project/IVaction@v9.21
