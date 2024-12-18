@@ -11,7 +11,7 @@ namespace ivs {
 
 template <size_t Size, char Offset>
 struct ranged_alphabet {
-    /*! \brief Conerts a single char value to a rank value
+    /*! \brief Converts a single char value to a rank value
      *
      * \param c char value
      * \return corresponding rank value
