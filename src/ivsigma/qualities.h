@@ -16,9 +16,10 @@ struct ranged_alphabet {
      * \param c char value
      * \return corresponding rank value
      */
+    template <uint8_t Unknown = 255>
     static constexpr auto char_to_rank(char c) noexcept -> uint8_t {
         if (c < Offset or c-Offset > Size) {
-            return 255;
+            return Unknown;
         }
         return c - Offset;
     }
@@ -28,8 +29,9 @@ struct ranged_alphabet {
      * \param v a rank value
      * \return corresponding (normalized) char value
      */
+    template <char Unknown = '\0'>
     static constexpr auto rank_to_char(uint8_t v) noexcept -> char {
-        if (v > Size) return '\0';
+        if (v > Size) return Unknown;
         return v + Offset;
     }
 };

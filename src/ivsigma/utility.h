@@ -22,11 +22,11 @@ namespace ivs {
  * \param in  string input
  * \param out target string (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, uint8_t Unknown = 255>
 void convert_char_to_rank(std::span<char const> in, std::span<uint8_t> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::char_to_rank(in[i]);
+        out[i] = Alphabet::template char_to_rank<Unknown>(in[i]);
     }
 }
 
@@ -36,11 +36,11 @@ void convert_char_to_rank(std::span<char const> in, std::span<uint8_t> out) {
  * \param in  string input
  * \return a vector of ranks
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, uint8_t Unknown = 255>
 auto convert_char_to_rank(std::span<char const> in) -> std::vector<uint8_t> {
     auto out = std::vector<uint8_t>{};
     out.resize(in.size());
-    convert_char_to_rank<Alphabet>(in, out);
+    convert_char_to_rank<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -48,9 +48,9 @@ auto convert_char_to_rank(std::span<char const> in) -> std::vector<uint8_t> {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, uint8_t Unknown = 255>
 auto view_char_to_rank = std::views::transform([](char c) {
-    return Alphabet::char_to_rank(c);
+    return Alphabet::template char_to_rank<Unknown>(c);
 });
 
 
@@ -62,11 +62,11 @@ auto view_char_to_rank = std::views::transform([](char c) {
  * \param in rank input
  * \param out a string of the rank input (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, char Unknown = '\0'>
 void convert_rank_to_char(std::span<uint8_t const> in, std::span<char> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::rank_to_char(in[i]);
+        out[i] = Alphabet::template rank_to_char<Unknown>(in[i]);
     }
 }
 
@@ -76,11 +76,11 @@ void convert_rank_to_char(std::span<uint8_t const> in, std::span<char> out) {
  * \param in rank input
  * \return a string of the rank input
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, char Unknown = '\0'>
 auto convert_rank_to_char(std::span<uint8_t const> in) -> std::string {
     auto out = std::string{};
     out.resize(in.size());
-    convert_rank_to_char<Alphabet>(in, out);
+    convert_rank_to_char<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -88,9 +88,9 @@ auto convert_rank_to_char(std::span<uint8_t const> in) -> std::string {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, char Unknown = '\0'>
 auto view_rank_to_char = std::views::transform([](uint8_t c) {
-    return Alphabet::rank_to_char(c);
+    return Alphabet::template rank_to_char<Unknown>(c);
 });
 
 /********** Functions Normalizing chars **********/
@@ -101,11 +101,11 @@ auto view_rank_to_char = std::views::transform([](uint8_t c) {
  * \param in string input
  * \param out normalized string of input (must have same size as in)
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, char Unknown = '\0'>
 void normalize_char(std::span<char const> in, std::span<char> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::normalize_char(in[i]);
+        out[i] = Alphabet::template normalize_char<Unknown>(in[i]);
     }
 }
 
@@ -115,11 +115,11 @@ void normalize_char(std::span<char const> in, std::span<char> out) {
  * \param in string input
  * \return normalized string of input
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, char Unknown = '\0'>
 auto normalize_char(std::span<char const> in) -> std::string {
     auto out = std::string{};
     out.resize(in.size());
-    normalize_char<Alphabet>(in, out);
+    normalize_char<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -127,9 +127,9 @@ auto normalize_char(std::span<char const> in) -> std::string {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_c Alphabet>
+template <alphabet_c Alphabet, char Unknown = '\0'>
 auto view_normalize_char = std::views::transform([](char c) {
-    return Alphabet::normalize_char(c);
+    return Alphabet::template normalize_char<Unknown>(c);
 });
 
 /********** Functions complement in rank space **********/
@@ -140,11 +140,11 @@ auto view_normalize_char = std::views::transform([](char c) {
  * \param in rank input
  * \param out complement of input (must have same size as in)
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, uint8_t Unknown = 255>
 void complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::complement_rank(in[i]);
+        out[i] = Alphabet::template complement_rank<Unknown>(in[i]);
     }
 }
 
@@ -154,11 +154,11 @@ void complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out) {
  * \param in rank input
  * \return complement in rank space
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, uint8_t Unknown = 255>
 auto complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t> {
     auto out = std::vector<uint8_t>{};
     out.resize(in.size());
-    complement_rank<Alphabet>(in, out);
+    complement_rank<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -166,9 +166,9 @@ auto complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t> {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, uint8_t Unknown = 255>
 auto view_complement_rank = std::views::transform([](uint8_t c) {
-    return Alphabet::complement_rank(c);
+    return Alphabet::template complement_rank<Unknown>(c);
 });
 
 
@@ -180,11 +180,11 @@ auto view_complement_rank = std::views::transform([](uint8_t c) {
  * \param in string input
  * \param out complement of input (must have same size as in)
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, char Unknown = '\0'>
 void complement_char(std::span<char const> in, std::span<char> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::complement_char(in[i]);
+        out[i] = Alphabet::template complement_char<Unknown>(in[i]);
     }
 }
 
@@ -194,11 +194,11 @@ void complement_char(std::span<char const> in, std::span<char> out) {
  * \param in string input
  * \return complement string of input
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, char Unknown = '\0'>
 auto complement_char(std::span<char const> in) -> std::string {
     auto out = std::string{};
     out.resize(in.size());
-    complement_char<Alphabet>(in, out);
+    complement_char<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -206,9 +206,9 @@ auto complement_char(std::span<char const> in) -> std::string {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, char Unknown = '\0'>
 auto view_complement_char = std::views::transform([](char c) {
-    return Alphabet::complement_char(c);
+    return Alphabet::template complement_char<Unknown>(c);
 });
 
 /********** Functions reverse complement in rank space **********/
@@ -219,11 +219,11 @@ auto view_complement_char = std::views::transform([](char c) {
  * \param in string input
  * \param out reverse complement of input (must have same size as in)
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, uint8_t Unknown = 255>
 void reverse_complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::complement_rank(in[in.size() - i - 1]);
+        out[i] = Alphabet::template complement_rank<Unknown>(in[in.size() - i - 1]);
     }
 }
 
@@ -233,11 +233,11 @@ void reverse_complement_rank(std::span<uint8_t const> in, std::span<uint8_t> out
  * \param in a span of ranks
  * \return reverse complement of in
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, uint8_t Unknown = 255>
 auto reverse_complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t> {
     auto out = std::vector<uint8_t>{};
     out.resize(in.size());
-    reverse_complement_rank<Alphabet>(in, out);
+    reverse_complement_rank<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -245,9 +245,9 @@ auto reverse_complement_rank(std::span<uint8_t const> in) -> std::vector<uint8_t
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, uint8_t Unknown = 255>
 auto view_reverse_complement_rank = std::views::reverse | std::views::transform([](uint8_t c) {
-    return Alphabet::complement_rank(c);
+    return Alphabet::template complement_rank<Unknown>(c);
 });
 
 
@@ -259,11 +259,11 @@ auto view_reverse_complement_rank = std::views::reverse | std::views::transform(
  * \param in string input
  * \param out complement of input (must have same size as in)
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, char Unknown = '\0'>
 void reverse_complement_char(std::span<char const> in, std::span<char> out) {
     assert(in.size() == out.size());
     for (auto i{0}; i < ssize(in); ++i) {
-        out[i] = Alphabet::complement_char(in[in.size() - i - 1]);
+        out[i] = Alphabet::template complement_char<Unknown>(in[in.size() - i - 1]);
     }
 }
 
@@ -273,11 +273,11 @@ void reverse_complement_char(std::span<char const> in, std::span<char> out) {
  * \param in string input
  * \return reverse complement string of input
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, char Unknown = '\0'>
 auto reverse_complement_char(std::span<char const> in) -> std::string {
     auto out = std::string{};
     out.resize(in.size());
-    reverse_complement_char<Alphabet>(in, out);
+    reverse_complement_char<Alphabet, Unknown>(in, out);
     return out;
 }
 
@@ -285,9 +285,9 @@ auto reverse_complement_char(std::span<char const> in) -> std::string {
  *
  * \tparam Alphabet describes the used alphabet
  */
-template <alphabet_with_complement_c Alphabet>
+template <alphabet_with_complement_c Alphabet, char Unknown = '\0'>
 auto view_reverse_complement_char = std::views::reverse | std::views::transform([](char c) {
-    return Alphabet::complement_char(c);
+    return Alphabet::template complement_char<Unknown>(c);
 });
 
 /********** Functions verify **********/
@@ -297,8 +297,9 @@ auto view_reverse_complement_char = std::views::reverse | std::views::transform(
  * \param in char input
  * \return if valid returns true, else false
  */
-inline auto verify_char(char in) -> bool {
-    return in != '\0';
+template <char Unknown = '\0'>
+auto verify_char(char in) -> bool {
+    return in != Unknown;
 }
 
 /*! \brief Returns if string is valid (searches for '\0')
@@ -306,9 +307,10 @@ inline auto verify_char(char in) -> bool {
  * \param in char input
  * \return std::optional pointing to the wrong entry (if one exists)
  */
-inline auto verify_char(std::span<char const> in) -> std::optional<size_t> {
+template <char Unknown = '\0'>
+auto verify_char(std::span<char const> in) -> std::optional<size_t> {
     auto str = std::string_view{in.begin(), in.end()};
-    auto pos = str.find('\0');
+    auto pos = str.find(Unknown);
     if (std::string_view::npos == pos) return std::nullopt; // verification successful
     return pos;
 }
@@ -318,8 +320,9 @@ inline auto verify_char(std::span<char const> in) -> std::optional<size_t> {
  * \param in rank input
  * \return if valid returns true, else false
  */
-inline auto verify_rank(uint8_t in) -> bool {
-    return in != 255;
+template <uint8_t Unknown = 255>
+auto verify_rank(uint8_t in) -> bool {
+    return in != Unknown;
 }
 
 /*! \brief Returns if all ranks are valid (searches for 255)
@@ -327,9 +330,10 @@ inline auto verify_rank(uint8_t in) -> bool {
  * \param in rank input
  * \return std::optional pointing to the wrong entry (if one exists)
  */
-inline auto verify_rank(std::span<uint8_t const> in) -> std::optional<size_t> {
+template <uint8_t Unknown = 255>
+auto verify_rank(std::span<uint8_t const> in) -> std::optional<size_t> {
     auto str = std::basic_string_view<uint8_t>{in.begin(), in.end()};
-    auto pos = str.find(255);
+    auto pos = str.find(Unknown);
     if (std::string_view::npos == pos) return std::nullopt; // verification successful
     return pos;
 }
