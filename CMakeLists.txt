@@ -7,6 +7,12 @@ cmake_minimum_required (VERSION 3.25)
 project(ivsigma LANGUAGES CXX VERSION "${IVIO_PROJECT_VERSION}"
             DESCRIPTION "ivsigma -- utilities function for dna4, dna5, aa and many more ... alphabets")
 
+include(cmake/CPM.cmake)
+CPMAddPackage("gh:SGSSGene/cpm.dependencies@1.0.0")
+CPMLoadDependenciesFile("${CMAKE_CURRENT_SOURCE_DIR}/cpm.dependencies")
+
+include(ivsigma-config.cmake)
+
 if (PROJECT_IS_TOP_LEVEL)
     if(WIN32)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj /EHsc")
@@ -14,16 +20,7 @@ if (PROJECT_IS_TOP_LEVEL)
     else ()
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -pedantic")
     endif ()
-endif ()
 
-
-include(cmake/CPM.cmake)
-CPMAddPackage("gh:SGSSGene/cpm.dependencies@1.0.0")
-CPMLoadDependenciesFile("${CMAKE_SOURCE_DIR}/cpm.dependencies")
-
-include(ivsigma-config.cmake)
-
-if (PROJECT_IS_TOP_LEVEL)
     enable_testing()
     add_subdirectory(docs/snippets)
     add_subdirectory(src/test_ivsigma)
