@@ -19,14 +19,12 @@ struct rank_char_mapping {
     static constexpr std::array<char, sizeof...(Tail)+1> all_symb = {H, Tail...};
 };
 
-
-
 template <typename... values>
 struct simple_alphabet {
 private:
-    //! Table representing conversion from rank to char
-    template <char Unknown = '\0'>
-    static constexpr std::array<char, 256> rank_to_char_table{[]() {
+
+    template <char Unknown>
+    static constexpr auto rank_to_char_table_init() {
         auto table = std::array<char, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -34,11 +32,15 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
 
-    //! Table representing conversion from char to rank
-    template <uint8_t Unknown = 255>
-    static constexpr std::array<uint8_t, 256> char_to_rank_table{[]() {
+    //! Table representing conversion from rank to char
+    template <char Unknown>
+    static constexpr std::array<char, 256> rank_to_char_table{rank_to_char_table_init<Unknown>()};
+
+
+    template <uint8_t Unknown>
+    static constexpr auto char_to_rank_table_init() {
         auto table = std::array<uint8_t, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -48,11 +50,14 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
 
-    //! Table normalizing a char
-    template <char Unknown = '\0'>
-    static constexpr std::array<char, 256> normalize_char_table{[]() {
+    //! Table representing conversion from char to rank
+    template <uint8_t Unknown>
+    static constexpr std::array<uint8_t, 256> char_to_rank_table{char_to_rank_table_init<Unknown>()};
+
+    template <char Unknown>
+    static constexpr auto normalize_char_table_init() {
         auto table = std::array<char, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -62,7 +67,11 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
+
+    //! Table normalizing a char
+    template <char Unknown>
+    static constexpr std::array<char, 256> normalize_char_table{normalize_char_table_init<Unknown>()};
 
 public:
     /*! \brief Converts a single char value to a rank value
@@ -118,9 +127,8 @@ struct rank_char_mapping_with_compl {
 template <typename... values>
 struct alphabet_with_compl {
 private:
-    //! Table representing conversion from rank to char
-    template <char Unknown = '\0'>
-    static constexpr std::array<char, 256> rank_to_char_table{[]() {
+    template <char Unknown>
+    static constexpr auto rank_to_char_table_init() {
         auto table = std::array<char, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -128,11 +136,14 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
 
-    //! Table representing conversion from char to rank
-    template <uint8_t Unknown = 255>
-    static constexpr std::array<uint8_t, 256> char_to_rank_table{[]() {
+    //! Table representing conversion from rank to char
+    template <char Unknown>
+    static constexpr std::array<char, 256> rank_to_char_table{rank_to_char_table_init<Unknown>()};
+
+    template <uint8_t Unknown>
+    static constexpr auto char_to_rank_table_init() {
         auto table = std::array<uint8_t, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -142,11 +153,14 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
 
-    //! Table normalizing a char
-    template <char Unknown = '\0'>
-    static constexpr std::array<char, 256> normalize_char_table{[]() {
+    //! Table representing conversion from char to rank
+    template <uint8_t Unknown>
+    static constexpr std::array<uint8_t, 256> char_to_rank_table{char_to_rank_table_init<Unknown>()};
+
+    template <char Unknown>
+    static constexpr auto normalize_char_table_init() {
         auto table = std::array<char, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -156,11 +170,14 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
 
-    //! Table computing the complement in rank space (rank in, rank out)
-    template <uint8_t Unknown = 255>
-    static constexpr std::array<uint8_t, 256> rank_complement_table{[]() {
+    //! Table normalizing a char
+    template <char Unknown>
+    static constexpr std::array<char, 256> normalize_char_table{normalize_char_table_init<Unknown>()};
+
+    template <uint8_t Unknown>
+    static constexpr auto rank_complement_table_init() {
         auto table = std::array<uint8_t, 256>{};
         table.fill(Unknown);
         auto add_values_to_table = [&]<typename V>(V) {
@@ -168,7 +185,11 @@ private:
         };
         (add_values_to_table(values{}), ...);
         return table;
-    }()};
+    }
+
+    //! Table computing the complement in rank space (rank in, rank out)
+    template <uint8_t Unknown>
+    static constexpr std::array<uint8_t, 256> rank_complement_table{rank_complement_table_init<Unknown>()};
 
 public:
     /*! \brief Normalizes a single char
