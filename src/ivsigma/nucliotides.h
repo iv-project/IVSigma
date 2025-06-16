@@ -24,6 +24,8 @@ struct dna5 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
                                   rank_char_mapping_with_compl<   3,    'T',   'A', 't', 'U', 'u'>,
                                   rank_char_mapping_with_compl<   4,    'N',   'N', 'n'>
+                            >, char_ambiguous_mappings<
+                                  char_ambiguous<'N', 'A', 'C', 'G', 'T'>
                             >>
 {};
 static_assert(alphabet_c<dna5>, "Unit test: is supposed to model an alphabet");
@@ -45,6 +47,18 @@ struct iupac : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<  13,   'H',   'D', 'h'>,
                                   rank_char_mapping_with_compl<  14,   'V',   'B', 'v'>,
                                   rank_char_mapping_with_compl<  15,   '-',   '-', '.'>
+                            >, char_ambiguous_mappings<
+                                  char_ambiguous<'N', 'A', 'C', 'G', 'T'>,
+                                  char_ambiguous<'W', 'A', 'T'>,
+                                  char_ambiguous<'S', 'C', 'G'>,
+                                  char_ambiguous<'M', 'A', 'C'>,
+                                  char_ambiguous<'K', 'G', 'T'>,
+                                  char_ambiguous<'R', 'A', 'G'>,
+                                  char_ambiguous<'Y', 'C', 'T'>,
+                                  char_ambiguous<'B', 'C', 'G', 'T'>,
+                                  char_ambiguous<'D', 'A', 'G', 'T'>,
+                                  char_ambiguous<'H', 'A', 'C', 'T'>,
+                                  char_ambiguous<'V', 'A', 'C', 'G'>
                             >>
 {};
 static_assert(alphabet_c<iupac>, "Unit test: is supposed to model an alphabet");
@@ -64,6 +78,8 @@ struct rna5 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
                                   rank_char_mapping_with_compl<   3,    'U',   'A', 'u', 'T', 't'>,
                                   rank_char_mapping_with_compl<   4,    'N',   'N', 'n'>
+                            >, char_ambiguous_mappings<
+                                  char_ambiguous<'N', 'A', 'C', 'G', 'U'>
                             >>
 {};
 static_assert(alphabet_c<rna5>, "Unit test: is supposed to model an alphabet");

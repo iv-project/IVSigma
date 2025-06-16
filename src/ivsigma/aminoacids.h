@@ -91,7 +91,12 @@ struct aa27 : alphabet<      rank_char_mappings<
                                         rank_char_mapping<  24,    'O',   'o'>,
                                         rank_char_mapping<  25,    'X',   'x'>,
                                         rank_char_mapping<  26,    '*'>
-                                    >>
+                                   >, char_ambiguous_mappings<
+                                       char_ambiguous<'B', 'D', 'N'>,
+                                       char_ambiguous<'J', 'I', 'L'>,
+                                       char_ambiguous<'Z', 'E', 'Q'>,
+                                       char_ambiguous<'X', 'A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y'>
+                                   >>
 {};
 static_assert(alphabet_c<aa27>, "Unit test: is supposed to model an alphabet");
 
