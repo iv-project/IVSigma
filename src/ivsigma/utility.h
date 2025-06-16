@@ -5,11 +5,14 @@
 
 #include "concepts.h"
 
+#include <algorithm>
 #include <cassert>
+#include <concepts>
 #include <optional>
 #include <ranges>
 #include <span>
 #include <string>
+#include <type_traits>
 #include <vector>
 
 namespace ivs {
@@ -309,10 +312,9 @@ auto verify_char(char in) -> bool {
  */
 template <char Unknown = '\0'>
 auto verify_char(std::span<char const> in) -> std::optional<size_t> {
-    auto str = std::string_view{in.begin(), in.end()};
-    auto pos = str.find(Unknown);
-    if (std::string_view::npos == pos) return std::nullopt; // verification successful
-    return pos;
+    auto iter = std::ranges::find(in, Unknown);
+    if (iter == in.end()) return std::nullopt; // verification successful
+    return std::distance(in.begin(), iter);
 }
 
 /*! \brief Checks if rank is valid (checks for 255)
@@ -332,10 +334,9 @@ auto verify_rank(uint8_t in) -> bool {
  */
 template <uint8_t Unknown = 255>
 auto verify_rank(std::span<uint8_t const> in) -> std::optional<size_t> {
-    auto str = std::basic_string_view<uint8_t>{in.begin(), in.end()};
-    auto pos = str.find(Unknown);
-    if (std::string_view::npos == pos) return std::nullopt; // verification successful
-    return pos;
+    auto iter = std::ranges::find(in, Unknown);
+    if (iter == in.end()) return std::nullopt; // verification successful
+    return std::distance(in.begin(), iter);
 }
 
 }
