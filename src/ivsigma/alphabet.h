@@ -152,7 +152,7 @@ public:
 
     /*! \brief returns a vector of rank values that the given base could stand for
      */
-    static constexpr auto bases_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
+    static constexpr auto base_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
         auto res = std::vector<uint8_t>{};
 
         auto add_values_to_table = [&]<typename V>(V) {
@@ -324,7 +324,7 @@ public:
 
     /*! \brief returns a vector of rank values that the given base could stand for
      */
-    static constexpr auto bases_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
+    static constexpr auto base_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
         auto res = std::vector<uint8_t>{};
 
         auto add_values_to_table = [&]<typename V>(V) {

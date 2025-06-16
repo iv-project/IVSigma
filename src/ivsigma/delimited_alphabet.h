@@ -93,6 +93,18 @@ public:
     static constexpr auto size() noexcept -> size_t {
         return Alphabet::size()+1;
     }
+
+    /*! \brief returns a array of ambiguous rank values
+     */
+    static constexpr auto ambiguous_bases() noexcept {
+        return Alphabet::ambiguous_bases();
+    }
+
+    /*! \brief returns a vector of rank values that the given base could stand for
+     */
+    static constexpr auto base_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
+        return Alphabet::base_alternatives(rank);
+    }
 };
 
 template <alphabet_with_complement_c Alphabet>
