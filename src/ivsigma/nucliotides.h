@@ -3,13 +3,13 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #pragma once
 
-#include "simple_alphabet.h"
+#include "alphabet.h"
 #include "delimited_alphabet.h"
 
 namespace ivs {
 
 //                                                             rank, symbol, compl, alts...
-struct dna4 : simple_alphabet<rank_char_mappings_with_compl<
+struct dna4 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   0,    'A',   'T', 'a'>,
                                   rank_char_mapping_with_compl<   1,    'C',   'G', 'c'>,
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
@@ -18,7 +18,7 @@ struct dna4 : simple_alphabet<rank_char_mappings_with_compl<
 {};
 static_assert(alphabet_c<dna4>, "Unit test: is supposed to model an alphabet");
 
-struct dna5 : simple_alphabet<rank_char_mappings_with_compl<
+struct dna5 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   0,    'A',   'T', 'a'>,
                                   rank_char_mapping_with_compl<   1,    'C',   'G', 'c'>,
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
@@ -28,7 +28,7 @@ struct dna5 : simple_alphabet<rank_char_mappings_with_compl<
 {};
 static_assert(alphabet_c<dna5>, "Unit test: is supposed to model an alphabet");
 
-struct iupac : simple_alphabet<rank_char_mappings_with_compl<
+struct iupac : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   0,   'A',   'T', 'a'>,
                                   rank_char_mapping_with_compl<   1,   'C',   'G', 'c'>,
                                   rank_char_mapping_with_compl<   2,   'G',   'C', 'g'>,
@@ -49,7 +49,7 @@ struct iupac : simple_alphabet<rank_char_mappings_with_compl<
 {};
 static_assert(alphabet_c<iupac>, "Unit test: is supposed to model an alphabet");
 
-struct rna4 : simple_alphabet<rank_char_mappings_with_compl<
+struct rna4 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   0,    'A',   'U', 'a'>,
                                   rank_char_mapping_with_compl<   1,    'C',   'G', 'c'>,
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
@@ -58,7 +58,7 @@ struct rna4 : simple_alphabet<rank_char_mappings_with_compl<
 {};
 static_assert(alphabet_c<rna4>, "Unit test: is supposed to model an alphabet");
 
-struct rna5 : simple_alphabet<rank_char_mappings_with_compl<
+struct rna5 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   0,    'A',   'U', 'a'>,
                                   rank_char_mapping_with_compl<   1,    'C',   'G', 'c'>,
                                   rank_char_mapping_with_compl<   2,    'G',   'C', 'g'>,
@@ -68,8 +68,8 @@ struct rna5 : simple_alphabet<rank_char_mappings_with_compl<
 {};
 static_assert(alphabet_c<rna5>, "Unit test: is supposed to model an alphabet");
 
-//                                                rank, symbol,   alts...
-struct dna3bs : simple_alphabet<rank_char_mappings<
+//                                                    rank, symbol,   alts...
+struct dna3bs : alphabet<rank_char_mappings<
                                     rank_char_mapping<   0,    'A',   'a'>,
                                     rank_char_mapping<   1,    'G',   'g'>,
                                     rank_char_mapping<   2,    'T',   't', 'C', 'c', 'U', 'u'>

@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #pragma once
 
-#include "simple_alphabet.h"
+#include "alphabet.h"
 
 #include <cstddef>
 

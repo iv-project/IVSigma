@@ -3,12 +3,12 @@
 // SPDX-License-Identifier: BSD-3-Clause
 #pragma once
 
-#include "simple_alphabet.h"
+#include "alphabet.h"
 
 namespace ivs {
 
 //                                                        rank, symbol,   alts...
-struct aa10li : simple_alphabet<    rank_char_mappings<
+struct aa10li : alphabet<    rank_char_mappings<
                                         rank_char_mapping<   0,    'A',   'a', 'S', 's', 'T', 't', 'X', 'x'>,
                                         rank_char_mapping<   1,    'B',   'b', 'D', 'd', 'E', 'e', 'Q', 'q', 'Z', 'z'>,
                                         rank_char_mapping<   2,    'C',   'c', 'U', 'u'>,
@@ -23,7 +23,7 @@ struct aa10li : simple_alphabet<    rank_char_mappings<
 {};
 static_assert(alphabet_c<aa10li>, "Unit test: is supposed to model an alphabet");
 
-struct aa10murphy : simple_alphabet<rank_char_mappings<
+struct aa10murphy : alphabet<rank_char_mappings<
                                         rank_char_mapping<   0,    'A',   'a'>,
                                         rank_char_mapping<   1,    'B',   'b', 'D', 'd', 'E', 'e', 'N', 'n', 'Q', 'q', 'Z', 'z'>,
                                         rank_char_mapping<   2,    'C',   'c', 'U', 'u'>,
@@ -38,7 +38,7 @@ struct aa10murphy : simple_alphabet<rank_char_mappings<
 {};
 static_assert(alphabet_c<aa10murphy>, "Unit test: is supposed to model an alphabet");
 
-struct aa20 : simple_alphabet<      rank_char_mappings<
+struct aa20 : alphabet<      rank_char_mappings<
                                         rank_char_mapping<   0,    'A',   'a'>,
                                         rank_char_mapping<   1,    'C',   'c', 'U', 'u'>,
                                         rank_char_mapping<   2,    'D',   'd', 'B', 'b'>,
@@ -63,7 +63,7 @@ struct aa20 : simple_alphabet<      rank_char_mappings<
 {};
 static_assert(alphabet_c<aa20>, "Unit test: is supposed to model an alphabet");
 
-struct aa27 : simple_alphabet<      rank_char_mappings<
+struct aa27 : alphabet<      rank_char_mappings<
                                         rank_char_mapping<   0,    'A',   'a'>,
                                         rank_char_mapping<   1,    'C',   'c'>,
                                         rank_char_mapping<   2,    'D',   'd'>,

@@ -28,10 +28,10 @@ template <rank_char_mapping_c ...T>
 using rank_char_mappings = std::tuple<T...>;
 
 template <typename... values>
-struct simple_alphabet;
+struct alphabet;
 
 template <rank_char_mapping_c... values>
-struct simple_alphabet<rank_char_mappings<values...>> {
+struct alphabet<rank_char_mappings<values...>> {
 private:
 
     template <char Unknown>
@@ -144,7 +144,7 @@ template <rank_char_mapping_with_compl_c ...T>
 using rank_char_mappings_with_compl = std::tuple<T...>;
 
 template <rank_char_mapping_with_compl_c... values>
-struct simple_alphabet<rank_char_mappings_with_compl<values...>> {
+struct alphabet<rank_char_mappings_with_compl<values...>> {
 private:
     template <char Unknown>
     static constexpr auto rank_to_char_table_init() {
