@@ -98,13 +98,18 @@ public:
     /*! \brief returns a array of ambiguous rank values
      */
     static constexpr auto ambiguous_bases() noexcept {
-        return Alphabet::ambiguous_bases();
+        auto table = Alphabet::ambiguous_bases();
+        for (auto& c : table) {
+            c += 1;
+        }
+        return table;
     }
 
     /*! \brief returns a vector of rank values that the given base could stand for
      */
     static constexpr auto base_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
-        return Alphabet::base_alternatives(rank);
+        if (rank == 0) return {};
+        return Alphabet::base_alternatives(rank-1);
     }
 };
 
