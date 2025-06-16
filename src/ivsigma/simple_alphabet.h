@@ -17,10 +17,21 @@ struct rank_char_mapping {
     static constexpr uint8_t rank = V;
     static constexpr char symb = H;
     static constexpr std::array<char, sizeof...(Tail)+1> all_symb = {H, Tail...};
+
+    static constexpr bool is_rank_char_mapping = true;
 };
 
+template <typename T>
+concept rank_char_mapping_c = T::is_rank_char_mapping;
+
+template <rank_char_mapping_c ...T>
+using rank_char_mappings = std::tuple<T...>;
+
 template <typename... values>
-struct simple_alphabet {
+struct simple_alphabet;
+
+template <rank_char_mapping_c... values>
+struct simple_alphabet<rank_char_mappings<values...>> {
 private:
 
     template <char Unknown>
@@ -122,10 +133,18 @@ struct rank_char_mapping_with_compl {
     static constexpr char symb = H;
     static constexpr char complement = Compl;
     static constexpr std::array<char, sizeof...(Tail)+1> all_symb = {H, Tail...};
+
+    static constexpr bool is_rank_char_mapping_with_compl = true;
 };
 
-template <typename... values>
-struct alphabet_with_compl {
+template <typename T>
+concept rank_char_mapping_with_compl_c = T::is_rank_char_mapping_with_compl;
+
+template <rank_char_mapping_with_compl_c ...T>
+using rank_char_mappings_with_compl = std::tuple<T...>;
+
+template <rank_char_mapping_with_compl_c... values>
+struct simple_alphabet<rank_char_mappings_with_compl<values...>> {
 private:
     template <char Unknown>
     static constexpr auto rank_to_char_table_init() {
