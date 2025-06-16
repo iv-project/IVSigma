@@ -7,6 +7,7 @@
 
 #include <array>
 #include <cstddef>
+#include <vector>
 
 namespace ivs {
 
