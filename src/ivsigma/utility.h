@@ -314,7 +314,7 @@ template <char Unknown = '\0'>
 auto verify_char(std::span<char const> in) -> std::optional<size_t> {
     auto iter = std::ranges::find(in, Unknown);
     if (iter == in.end()) return std::nullopt; // verification successful
-    return *iter;
+    return std::distance(in.begin(), iter);
 }
 
 /*! \brief Checks if rank is valid (checks for 255)
@@ -336,7 +336,7 @@ template <uint8_t Unknown = 255>
 auto verify_rank(std::span<uint8_t const> in) -> std::optional<size_t> {
     auto iter = std::ranges::find(in, Unknown);
     if (iter == in.end()) return std::nullopt; // verification successful
-    return *iter;
+    return std::distance(in.begin(), iter);
 }
 
 }
