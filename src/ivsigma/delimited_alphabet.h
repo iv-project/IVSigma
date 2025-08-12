@@ -109,7 +109,7 @@ public:
      */
     static constexpr auto base_alternatives(uint8_t rank) noexcept -> std::vector<uint8_t> {
         if (rank == 0) return {};
-        return Alphabet::base_alternatives(rank-1);
+        return Alphabet::base_alternatives(rank-1)+1;
     }
 };
 
