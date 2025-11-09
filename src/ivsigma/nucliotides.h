@@ -102,6 +102,8 @@ struct dna3bs : alphabet<rank_char_mappings<
 {};
 static_assert(alphabet_c<dna3bs>, "Unit test: is supposed to model an alphabet");
 
+struct d_dna2 : delimited_alphabet<dna2> {};
+static_assert(alphabet_c<d_dna2>, "Unit test: is supposed to model an alphabet");
 
 struct d_dna4 : delimited_alphabet<dna4> {};
 static_assert(alphabet_c<d_dna4>, "Unit test: is supposed to model an alphabet");
