@@ -461,6 +461,7 @@ static void check_reverse_complement_rank_with_unknown(std::vector<uint8_t> inpu
 
 
 void test_nucliotides() {
+    check_normalize<ivs::dna2>("AaCcGgTtUuSsWw", "SSWWWWSSSSSSWW");
     check_normalize<ivs::dna4>("AaCcGgTtUu", "AACCGGTTTT");
     check_normalize<ivs::dna5>("AaCcGgTtUuNn", "AACCGGTTTTNN");
     check_normalize<ivs::rna4>("AaCcGgUuTt", "AACCGGUUUU");
@@ -468,6 +469,7 @@ void test_nucliotides() {
     check_normalize<ivs::iupac>("AaCcGgTtNnRrYySsWwKkMmBbDdHhVv-.Uu", "AACCGGTTNNRRYYSSWWKKMMBBDDHHVV--TT");
     check_normalize<ivs::dna3bs>("AaCcGgTtUu", "AATTGGTTTT");
 
+    check_char_to_rank<ivs::dna2>("AaCcGgTtUuSsWw", {0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1});
     check_char_to_rank<ivs::dna4>("AaCcGgTtUu", {0, 0, 1, 1, 2, 2, 3, 3, 3, 3});
     check_char_to_rank<ivs::dna5>("AaCcGgTtUuNn", {0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4});
     check_char_to_rank<ivs::rna4>("AaCcGgUuTt", {0, 0, 1, 1, 2, 2, 3, 3, 3, 3});
@@ -476,6 +478,7 @@ void test_nucliotides() {
     check_char_to_rank<ivs::dna3bs>("AaGgTtCcUu", {0, 0, 1, 1, 2, 2, 2, 2, 2, 2});
 
 
+    check_rank_to_char<ivs::dna2>( {0, 1, 1, 0}, "SWWS");
     check_rank_to_char<ivs::dna4>( {0, 1, 2, 3}, "ACGT");
     check_rank_to_char<ivs::dna5>( {0, 1, 2, 3, 4}, "ACGTN");
     check_rank_to_char<ivs::rna4>( {0, 1, 2, 3}, "ACGU");
@@ -483,30 +486,35 @@ void test_nucliotides() {
     check_rank_to_char<ivs::iupac>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, "ACGTNRYSWKMBDHV-");
     check_rank_to_char<ivs::dna3bs>( {0, 1, 2}, "AGT");
 
+    check_complement_char<ivs::dna2>("AaCcGgTtUuSsWw", "SSWWWWSSSSSSWW");
     check_complement_char<ivs::dna4>("AaCcGgTtUu", "TTGGCCAAAA");
     check_complement_char<ivs::dna5>("AaCcGgTtUuNn", "TTGGCCAAAANN");
     check_complement_char<ivs::rna4>("AaCcGgUuTt", "UUGGCCAAAA");
     check_complement_char<ivs::rna5>("AaCcGgUuTtNn", "UUGGCCAAAANN");
     check_complement_char<ivs::iupac>("AaCcGgTtNnRrYySsWwKkMmBbDdHhVv-.Uu", "TTGGCCAANNYYRRSSWWMMKKVVHHDDBB--AA");
 
+    check_complement_rank<ivs::dna2>({0, 1, 1, 0}, {0, 1, 1, 0});
     check_complement_rank<ivs::dna4>({0, 1, 2, 3}, {3, 2, 1, 0});
     check_complement_rank<ivs::dna5>({0, 1, 2, 3, 4}, {3, 2, 1, 0, 4});
     check_complement_rank<ivs::rna4>({0, 1, 2, 3}, {3, 2, 1, 0});
     check_complement_rank<ivs::rna5>({0, 1, 2, 3, 4}, {3, 2, 1, 0, 4});
     check_complement_rank<ivs::iupac>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, {3, 2, 1, 0, 4, 6, 5, 7, 8, 10, 9, 14, 13, 12, 11, 15});
 
+    check_reverse_complement_char<ivs::dna2>("AaCcGgTtUuSsWw", "WWSSSSSSWWWWSS");
     check_reverse_complement_char<ivs::dna4>("AaCcGgTtUu", "AAAACCGGTT");
     check_reverse_complement_char<ivs::dna5>("AaCcGgTtUuNn", "NNAAAACCGGTT");
     check_reverse_complement_char<ivs::rna4>("AaCcGgUuTt", "AAAACCGGUU");
     check_reverse_complement_char<ivs::rna5>("AaCcGgUuTtNn", "NNAAAACCGGUU");
     check_reverse_complement_char<ivs::iupac>("AaCcGgTtNnRrYySsWwKkMmBbDdHhVv-.Uu", "AA--BBDDHHVVKKMMWWSSRRYYNNAACCGGTT");
 
+    check_reverse_complement_rank<ivs::dna2>({0, 1, 0, 1}, {1, 0, 1, 0});
     check_reverse_complement_rank<ivs::dna4>({0, 1, 2, 3}, {0, 1, 2, 3});
     check_reverse_complement_rank<ivs::dna5>({0, 1, 2, 3, 4}, {4, 0, 1, 2, 3});
     check_reverse_complement_rank<ivs::rna4>({0, 1, 2, 3}, {0, 1, 2, 3});
     check_reverse_complement_rank<ivs::rna5>({0, 1, 2, 3, 4}, {4, 0, 1, 2, 3});
     check_reverse_complement_rank<ivs::iupac>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, {15, 11, 12, 13, 14, 9, 10, 8, 7, 5, 6, 4, 0, 1, 2, 3});
 
+    check_normalize_with_unknown<ivs::dna2, 'Z', 254>("AaCcGgTtUuSsWw", "SSWWWWSSSSSSWW");
     check_normalize_with_unknown<ivs::dna4, 'Z', 254>("AaCcGgTtUu", "AACCGGTTTT");
     check_normalize_with_unknown<ivs::dna5, 'Z', 254>("AaCcGgTtUuNn", "AACCGGTTTTNN");
     check_normalize_with_unknown<ivs::rna4, 'Z', 254>("AaCcGgUuTt", "AACCGGUUUU");
@@ -514,6 +522,7 @@ void test_nucliotides() {
     check_normalize_with_unknown<ivs::iupac, 'Z', 254>("AaCcGgTtNnRrYySsWwKkMmBbDdHhVv-.Uu", "AACCGGTTNNRRYYSSWWKKMMBBDDHHVV--TT");
     check_normalize_with_unknown<ivs::dna3bs, 'Z', 254>("AaCcGgTtUu", "AATTGGTTTT");
 
+    check_char_to_rank_with_unknown<ivs::dna2, 'Z', 254>("AaCcGgTtUuSsWw", {0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1});
     check_char_to_rank_with_unknown<ivs::dna4, 'Z', 254>("AaCcGgTtUu", {0, 0, 1, 1, 2, 2, 3, 3, 3, 3});
     check_char_to_rank_with_unknown<ivs::dna5, 'Z', 254>("AaCcGgTtUuNn", {0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 4, 4});
     check_char_to_rank_with_unknown<ivs::rna4, 'Z', 254>("AaCcGgUuTt", {0, 0, 1, 1, 2, 2, 3, 3, 3, 3});
@@ -522,6 +531,7 @@ void test_nucliotides() {
     check_char_to_rank_with_unknown<ivs::dna3bs, 'Z', 254>("AaGgTtCcUu", {0, 0, 1, 1, 2, 2, 2, 2, 2, 2});
 
 
+    check_rank_to_char_with_unknown<ivs::dna2, 'Z', 254>( {0, 1, 0, 1}, "SWSW");
     check_rank_to_char_with_unknown<ivs::dna4, 'Z', 254>( {0, 1, 2, 3}, "ACGT");
     check_rank_to_char_with_unknown<ivs::dna5, 'Z', 254>( {0, 1, 2, 3, 4}, "ACGTN");
     check_rank_to_char_with_unknown<ivs::rna4, 'Z', 254>( {0, 1, 2, 3}, "ACGU");
@@ -529,24 +539,28 @@ void test_nucliotides() {
     check_rank_to_char_with_unknown<ivs::iupac, 'Z', 254>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, "ACGTNRYSWKMBDHV-");
     check_rank_to_char_with_unknown<ivs::dna3bs, 'Z', 254>( {0, 1, 2}, "AGT");
 
+    check_complement_char_with_unknown<ivs::dna2, 'Z', 254>("AaCcGgTtUuSsWw", "SSWWWWSSSSSSWW");
     check_complement_char_with_unknown<ivs::dna4, 'Z', 254>("AaCcGgTtUu", "TTGGCCAAAA");
     check_complement_char_with_unknown<ivs::dna5, 'Z', 254>("AaCcGgTtUuNn", "TTGGCCAAAANN");
     check_complement_char_with_unknown<ivs::rna4, 'Z', 254>("AaCcGgUuTt", "UUGGCCAAAA");
     check_complement_char_with_unknown<ivs::rna5, 'Z', 254>("AaCcGgUuTtNn", "UUGGCCAAAANN");
     check_complement_char_with_unknown<ivs::iupac, 'Z', 254>("AaCcGgTtNnRrYySsWwKkMmBbDdHhVv-.Uu", "TTGGCCAANNYYRRSSWWMMKKVVHHDDBB--AA");
 
+    check_complement_rank_with_unknown<ivs::dna2, 'Z', 254>({0, 1, 0, 1}, {0, 1, 0, 1});
     check_complement_rank_with_unknown<ivs::dna4, 'Z', 254>({0, 1, 2, 3}, {3, 2, 1, 0});
     check_complement_rank_with_unknown<ivs::dna5, 'Z', 254>({0, 1, 2, 3, 4}, {3, 2, 1, 0, 4});
     check_complement_rank_with_unknown<ivs::rna4, 'Z', 254>({0, 1, 2, 3}, {3, 2, 1, 0});
     check_complement_rank_with_unknown<ivs::rna5, 'Z', 254>({0, 1, 2, 3, 4}, {3, 2, 1, 0, 4});
     check_complement_rank_with_unknown<ivs::iupac, 'Z', 254>({0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}, {3, 2, 1, 0, 4, 6, 5, 7, 8, 10, 9, 14, 13, 12, 11, 15});
 
+    check_reverse_complement_char_with_unknown<ivs::dna2, 'Z', 254>("AaCcGgTtUuSsWw", "WWSSSSSSWWWWSS");
     check_reverse_complement_char_with_unknown<ivs::dna4, 'Z', 254>("AaCcGgTtUu", "AAAACCGGTT");
     check_reverse_complement_char_with_unknown<ivs::dna5, 'Z', 254>("AaCcGgTtUuNn", "NNAAAACCGGTT");
     check_reverse_complement_char_with_unknown<ivs::rna4, 'Z', 254>("AaCcGgUuTt", "AAAACCGGUU");
     check_reverse_complement_char_with_unknown<ivs::rna5, 'Z', 254>("AaCcGgUuTtNn", "NNAAAACCGGUU");
     check_reverse_complement_char_with_unknown<ivs::iupac, 'Z', 254>("AaCcGgTtNnRrYySsWwKkMmBbDdHhVv-.Uu", "AA--BBDDHHVVKKMMWWSSRRYYNNAACCGGTT");
 
+    check_reverse_complement_rank_with_unknown<ivs::dna2, 'Z', 254>({0, 1, 0, 1}, {1, 0, 1, 0});
     check_reverse_complement_rank_with_unknown<ivs::dna4, 'Z', 254>({0, 1, 2, 3}, {0, 1, 2, 3});
     check_reverse_complement_rank_with_unknown<ivs::dna5, 'Z', 254>({0, 1, 2, 3, 4}, {4, 0, 1, 2, 3});
     check_reverse_complement_rank_with_unknown<ivs::rna4, 'Z', 254>({0, 1, 2, 3}, {0, 1, 2, 3});
