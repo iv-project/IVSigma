@@ -9,6 +9,15 @@
 namespace ivs {
 
 //                                                             rank, symbol, compl, alts...
+struct dna2 : alphabet<rank_char_mappings_with_compl<
+                                  rank_char_mapping_with_compl<   0,    'S',   'S', 's', 'A', 'a', 'T', 't', 'U', 'u'>,
+                                  rank_char_mapping_with_compl<   1,    'W',   'W', 'w', 'C', 'c', 'G', 'g'>
+                                >>
+{};
+static_assert(alphabet_c<dna2>, "Unit test: is supposed to model an alphabet");
+
+
+//                                                             rank, symbol, compl, alts...
 struct dna4 : alphabet<rank_char_mappings_with_compl<
                                   rank_char_mapping_with_compl<   0,    'A',   'T', 'a'>,
                                   rank_char_mapping_with_compl<   1,    'C',   'G', 'c'>,
@@ -93,6 +102,8 @@ struct dna3bs : alphabet<rank_char_mappings<
 {};
 static_assert(alphabet_c<dna3bs>, "Unit test: is supposed to model an alphabet");
 
+struct d_dna2 : delimited_alphabet<dna2> {};
+static_assert(alphabet_c<d_dna2>, "Unit test: is supposed to model an alphabet");
 
 struct d_dna4 : delimited_alphabet<dna4> {};
 static_assert(alphabet_c<d_dna4>, "Unit test: is supposed to model an alphabet");
