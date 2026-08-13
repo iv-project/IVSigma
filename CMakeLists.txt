@@ -8,8 +8,8 @@ project(ivsigma LANGUAGES CXX VERSION "${IVIO_PROJECT_VERSION}"
             DESCRIPTION "ivsigma -- utilities function for dna4, dna5, aa and many more ... alphabets")
 
 include(cmake/CPM.cmake)
-CPMAddPackage("gh:SGSSGene/cpm.dependencies@1.0.0")
-CPMLoadDependenciesFile("${CMAKE_CURRENT_SOURCE_DIR}/cpm.dependencies")
+CPMAddPackage("gh:SGSSGene/cpmpacki@1.1.2")
+loadCPMPack("${CMAKE_CURRENT_SOURCE_DIR}/cpmpack.json")
 
 include(ivsigma-config.cmake)
 
