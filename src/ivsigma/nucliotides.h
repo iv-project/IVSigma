@@ -10,8 +10,8 @@ namespace ivs {
 
 //                                                             rank, symbol, compl, alts...
 struct dna2 : alphabet<rank_char_mappings_with_compl<
-                                  rank_char_mapping_with_compl<   0,    'S',   'S', 's', 'A', 'a', 'T', 't', 'U', 'u'>,
-                                  rank_char_mapping_with_compl<   1,    'W',   'W', 'w', 'C', 'c', 'G', 'g'>
+                                  rank_char_mapping_with_compl<   0,    'W',   'W', 'w', 'A', 'a', 'T', 't', 'U', 'u'>,
+                                  rank_char_mapping_with_compl<   1,    'S',   'S', 's', 'C', 'c', 'G', 'g'>
                                 >>
 {};
 static_assert(alphabet_c<dna2>, "Unit test: is supposed to model an alphabet");
